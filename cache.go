@@ -40,7 +40,7 @@ func (cache Cache) Keys() []string {
 	keys := []string{}
 
 	for key := range cache.cacheMap {
-		if (cache.cacheMap[key].useDeadline && cache.cacheMap[key].deadline.After(time.Now())) {
+		if (!cache.cacheMap[key].useDeadline || cache.cacheMap[key].deadline.After(time.Now())) {
 			keys = append(keys, key)
 		}
 	}
